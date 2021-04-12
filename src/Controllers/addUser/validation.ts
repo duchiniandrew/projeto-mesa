@@ -2,7 +2,7 @@ import { Request } from "express"
 import { Container } from "typedi"
 import { Repository } from "typeorm"
 
-import { User } from "../../Entities/User"
+import { User } from "../../DB/Entities/User"
 import { EmptyEmailError, EmptyNameError, EmptyPasswordError, FormatPasswordError, EmailInUseError } from "./errors"
 
 export default async function validation(req: Request) {

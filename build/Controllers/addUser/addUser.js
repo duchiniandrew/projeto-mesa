@@ -10,7 +10,7 @@ async function addUser(req, res) {
     try {
         await validation_1.default(req);
         try {
-            res.status(200).json(await addUser_1.default(req.body.name, req.body.email, req.body.password));
+            res.status(201).json(await addUser_1.default(req.body.name, req.body.email, req.body.password));
         }
         catch (error) {
             res.status(500).json("Internal error in server please contact the administrator");

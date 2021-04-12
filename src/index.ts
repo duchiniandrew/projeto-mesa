@@ -1,5 +1,5 @@
-import config from "./env.json"
+import initializeDBConnection from "./DB"
+import { config } from "dotenv"
 
-for (const key in config) {
-    process.env
-}
+config()
+initializeDBConnection()

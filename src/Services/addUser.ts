@@ -1,14 +1,13 @@
 import { Container } from "typedi"
 import { Repository } from "typeorm"
 
-import { User } from "../Entities/User"
+import { User } from "../DB/Entities/User"
 
 export default async function addUser(name: string, email: string, password: string) {
     try {
-        const UserTable = Container.get<Repository<User>>("UserTable")
         const newUser = new User(name, email, password)
-        await UserTable.save(newUser)
-        return "user added successfully."
+        await Container.get<Repository<User>>("UserTable").save(newUser)
+        return "User added successfully."
     }
     catch (error) {
         throw error

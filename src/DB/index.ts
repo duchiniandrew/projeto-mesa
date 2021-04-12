@@ -2,21 +2,16 @@ import { createConnection } from "typeorm"
 import { Container } from "typedi"
 
 import Routes from "../Routes"
-import { User } from "../Entities/User"
+import { User } from "./Entities/User"
+import { Local } from "./Entities/Local"
+import { LocalAnalysis } from "./Entities/LocalAnalysis"
 
-createConnection({
-    type: process.env.dbType,
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "postgres",
-    database: "Mesa",
-    entities: [
-        User
-    ],
-    synchronize: true,
-    logging: false
-}).then(connection => {
-    Container.set("UserTable", connection.getRepository(User))
-    Routes()
-})
+export default function db() {
+
+    createConnection().then(connection => {
+        Container.set("UserTable", connection.getRepository(User))
+        Container.set("LocalTable", connection.getRepository(Local))
+        Container.set("LocalAnalysisTable", connection.getRepository(LocalAnalysis))
+        Routes()
+    })
+}

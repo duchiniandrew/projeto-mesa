@@ -1,9 +1,8 @@
 import { Container } from "typedi"
 import { Repository } from "typeorm"
 
-import { User } from "../Entities/User"
+import { User } from "../DB/Entities/User"
 
 export default function getUserById(id: number) {
-    const UserTable = Container.get<Repository<User>>("UserTable")
-    return UserTable.findOne({ id: id })
+    return Container.get<Repository<User>>("UserTable").findOne({ id: id })
 }
