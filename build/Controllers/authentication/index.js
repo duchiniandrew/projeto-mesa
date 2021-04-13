@@ -12,11 +12,11 @@ function authentication(req, res) {
             res.status(200).json(authenticate_1.default(req.body.email, req.body.password));
         }
         catch (error) {
-            res.status(error.code || 500).json(error.message);
+            res.status(error.code || 500).json({ message: error.message });
         }
     }
     catch (error) {
-        res.status(error.code).send(error.message);
+        res.status(error.code).send({ message: error.message });
     }
 }
 exports.default = authentication;

@@ -1,13 +1,13 @@
-import { Request, Response } from "express"
+import { Request, Response } from "express";
 
+import getLocalRateService from "../../Services/getLocalRates"
 import validation from "./validation"
-import addLocalService from "../../Services/addLocal"
 
-export default async function addLocal(req: Request, res: Response) {
+export default async function getLocalRate(req: Request, res: Response) {
     try {
         validation(req)
         try {
-            res.status(201).json(await addLocalService(req.body))
+            res.status(200).json(await getLocalRateService(parseInt(req.params.localId)))
         }
         catch (error) {
             res.status(error.code).json({ message: error.message })

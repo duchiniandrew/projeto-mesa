@@ -22,7 +22,7 @@ export default async function validation(req: Request) {
     if (password.length < 8 && /^[0-9a-zA-Z]+$/.test(password)) {
         throw new FormatPasswordError()
     }
-    if (await UserTable.findOne({ email: email })) {
-        throw new EmailInUseError()
-    }
+    // if (await UserTable.findOne({ email: email })) {
+    //     throw new EmailInUseError()
+    // }
 }

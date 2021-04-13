@@ -13,7 +13,6 @@ async function addLocal(local) {
         return "Local added successfully.";
     }
     catch (error) {
-        console.log(error);
         throw error;
     }
 }

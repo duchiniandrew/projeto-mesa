@@ -3,13 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const getLocalRates_1 = __importDefault(require("../../Services/getLocalRates"));
 const validation_1 = __importDefault(require("./validation"));
-const addLocal_1 = __importDefault(require("../../Services/addLocal"));
-async function addLocal(req, res) {
+async function getLocalRate(req, res) {
     try {
         validation_1.default(req);
         try {
-            res.status(201).json(await addLocal_1.default(req.body));
+            res.status(200).json(await getLocalRates_1.default(parseInt(req.params.localId)));
         }
         catch (error) {
             res.status(error.code).json({ message: error.message });
@@ -19,4 +19,4 @@ async function addLocal(req, res) {
         res.status(error.code).json({ message: error.message });
     }
 }
-exports.default = addLocal;
+exports.default = getLocalRate;

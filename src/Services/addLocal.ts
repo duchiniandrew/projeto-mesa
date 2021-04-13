@@ -18,7 +18,6 @@ export default async function addLocal(local: LocalType) {
         return "Local added successfully."
     }
     catch (error) {
-        console.log(error)
         throw error
     }
 }
