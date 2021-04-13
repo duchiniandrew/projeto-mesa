@@ -43,4 +43,4 @@ Test the developer skills as a senior developer. The developer will create a bac
 
 ## Where can I find the APIs documentation ?
 
-This project uses swagger for document endpoints click here to see the documentation: 
+This project uses swagger for document endpoints click here to see the documentation: ${YOUR_HOST}/api/docs

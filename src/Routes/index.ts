@@ -15,11 +15,16 @@ import changeUserPassword from "../Controllers/changeUserPassword"
 import changeUserEmail from "../Controllers/changeUserEmail"
 import logout from "../Controllers/logout"
 import updateUserPerfil from "../Controllers/updateUserPerfil"
+import { serve, setup } from 'swagger-ui-express'
+
+import * as swaggerFile from "../api-spec.json"
 
 const app = Express()
 app.use(json())
 
 export default function routes() {
+    app.use('/api/docs', serve, setup(swaggerFile));
+
     app.get("/api/v1/getLocalsByList", authMiddleware, getLocalsByList)
     app.get("/api/v1/getLocalsByMap/:lat/:lng", authMiddleware, getLocalsByMap)
     app.get("/api/v1/getLocalRates/:id", authMiddleware, getLocalRates)

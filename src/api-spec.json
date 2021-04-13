@@ -1,0 +1,60 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Project Mesa API",
+        "description": "Project Mesa API documentation",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/api",
+    "paths": {
+        "/v1/getLocalsByList": {
+            "get": {
+                "summary": "Get all locals in ordened",
+                "description": "Get all locals in ordened by alphabet",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/getLocalsByListResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getLocalsByListResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "task": {
+                    "type": "string"
+                },
+                "assignee": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
