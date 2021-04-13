@@ -19,3 +19,10 @@ export class FailedAuthentication extends Error {
         this.code = 401
     }
 }
+export class UserAllreadyLoggedError extends Error {
+    code: number
+    constructor() {
+        super("User allready logged.")
+        this.code = 400
+    }
+}

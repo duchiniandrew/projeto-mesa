@@ -19,7 +19,7 @@ Test the developer skills as a senior developer. The developer will create a bac
 
 * NodeJS version 12+
 * NPM 6+ or YARN,
-* PostgresSQL
+* Any DB suported by TypeORM (MySQL, MariaDB, Postgres, CockroachDB, SQLite, Microsoft SQL Server, Oracle, etc... )
 
 ## How to install and run the project ?
 

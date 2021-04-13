@@ -13,6 +13,7 @@ import getLocalRates from "../Controllers/getLocalRates"
 import getUserPerfil from "../Controllers/getUserPerfil"
 import changeUserPassword from "../Controllers/changeUserPassword"
 import changeUserEmail from "../Controllers/changeUserEmail"
+import logout from "../Controllers/logout"
 import updateUserPerfil from "../Controllers/updateUserPerfil"
 
 const app = Express()
@@ -23,6 +24,7 @@ export default function routes() {
     app.get("/api/v1/getLocalsByMap/:lat/:lng", authMiddleware, getLocalsByMap)
     app.get("/api/v1/getLocalRates/:id", authMiddleware, getLocalRates)
     app.get("/api/v1/getUserPerfil", authMiddleware, getUserPerfil)
+    app.get("/api/v1/logout", authMiddleware, logout)
 
     app.post("/api/v1/addLocal", authMiddleware, addLocal)
     app.post("/api/v1/user", authMiddleware, addUser)

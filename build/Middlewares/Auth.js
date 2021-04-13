@@ -4,19 +4,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-function authenticateToken(req, res, next) {
+const checkTokenInBlackList_1 = __importDefault(require("../Services/checkTokenInBlackList"));
+async function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (!token) {
         return res.status(401).json("Unauthorized User.");
     }
     else {
-        jsonwebtoken_1.default.verify(token, process.env.SECRET, (error, user) => {
-            if (error) {
-                return res.status(403).send("User not authenticated");
-            }
-            next();
-        });
+        if (await checkTokenInBlackList_1.default(token)) {
+            return res.status(401).json("Unauthorized User.");
+        }
+        else {
+            jsonwebtoken_1.default.verify(token, process.env.SECRET, (error, user) => {
+                if (error) {
+                    return res.status(403).send("User not authenticated");
+                }
+                next();
+            });
+        }
     }
 }
 exports.default = authenticateToken;

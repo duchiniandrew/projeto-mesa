@@ -9,7 +9,7 @@ async function authentication(req, res) {
     try {
         validation_1.default(req);
         try {
-            res.status(200).json(await authenticate_1.default(req.body.email, req.body.password));
+            res.status(200).json(await authenticate_1.default(req));
         }
         catch (error) {
             res.status(error.code || 500).json({ message: error.message });

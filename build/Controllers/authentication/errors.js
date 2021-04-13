@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FailedAuthentication = exports.EmptyPasswordError = exports.EmptyEmailError = void 0;
+exports.UserAllreadyLoggedError = exports.FailedAuthentication = exports.EmptyPasswordError = exports.EmptyEmailError = void 0;
 class EmptyEmailError extends Error {
     constructor() {
         super("Email parameter is empty.");
@@ -22,3 +22,10 @@ class FailedAuthentication extends Error {
     }
 }
 exports.FailedAuthentication = FailedAuthentication;
+class UserAllreadyLoggedError extends Error {
+    constructor() {
+        super("User allready logged.");
+        this.code = 400;
+    }
+}
+exports.UserAllreadyLoggedError = UserAllreadyLoggedError;

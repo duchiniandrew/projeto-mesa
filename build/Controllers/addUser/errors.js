@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmailInUseError = exports.FormatPasswordError = exports.EmptyPasswordError = exports.EmptyEmailError = exports.EmptyNameError = void 0;
+exports.FormatPasswordError = exports.EmptyPasswordError = exports.EmptyEmailError = exports.EmptyNameError = void 0;
 class EmptyNameError extends Error {
     constructor() {
         super("Name parameter empty.");
@@ -29,10 +29,3 @@ class FormatPasswordError extends Error {
     }
 }
 exports.FormatPasswordError = FormatPasswordError;
-class EmailInUseError extends Error {
-    constructor() {
-        super("Email allready in use.");
-        this.code = 400;
-    }
-}
-exports.EmailInUseError = EmailInUseError;

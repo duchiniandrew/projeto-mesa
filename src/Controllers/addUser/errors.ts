@@ -26,10 +26,3 @@ export class FormatPasswordError extends Error {
         this.code = 400
     }
 }
-export class EmailInUseError extends Error {
-    code: number
-    constructor() {
-        super("Email allready in use.")
-        this.code = 400
-    }
-}

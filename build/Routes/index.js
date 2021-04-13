@@ -17,6 +17,7 @@ const getLocalRates_1 = __importDefault(require("../Controllers/getLocalRates"))
 const getUserPerfil_1 = __importDefault(require("../Controllers/getUserPerfil"));
 const changeUserPassword_1 = __importDefault(require("../Controllers/changeUserPassword"));
 const changeUserEmail_1 = __importDefault(require("../Controllers/changeUserEmail"));
+const logout_1 = __importDefault(require("../Controllers/logout"));
 const updateUserPerfil_1 = __importDefault(require("../Controllers/updateUserPerfil"));
 const app = express_1.default();
 app.use(body_parser_1.json());
@@ -25,6 +26,7 @@ function routes() {
     app.get("/api/v1/getLocalsByMap/:lat/:lng", Auth_1.default, getLocalsByMap_1.default);
     app.get("/api/v1/getLocalRates/:id", Auth_1.default, getLocalRates_1.default);
     app.get("/api/v1/getUserPerfil", Auth_1.default, getUserPerfil_1.default);
+    app.get("/api/v1/logout", Auth_1.default, logout_1.default);
     app.post("/api/v1/addLocal", Auth_1.default, addLocal_1.default);
     app.post("/api/v1/user", Auth_1.default, addUser_1.default);
     app.post("/api/v1/authenticate", authentication_1.default);

@@ -3,12 +3,11 @@ import { Container } from "typedi"
 import { Repository } from "typeorm"
 
 import { User } from "../../DB/Entities/User"
-import { EmptyEmailError, EmptyNameError, EmptyPasswordError, FormatPasswordError, EmailInUseError } from "./errors"
+import { EmptyEmailError, EmptyNameError, EmptyPasswordError, FormatPasswordError } from "./errors"
 
 export default async function validation(req: Request) {
 
     const { name, email, password } = req.body
-    const UserTable = Container.get<Repository<User>>("UserTable")
 
     if (name === "") {
         throw new EmptyNameError()
