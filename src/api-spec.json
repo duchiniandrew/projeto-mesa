@@ -41,18 +41,32 @@
     "definitions": {
         "getLocalsByListResponse": {
             "type": "object",
+            "description": "Local object",
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "number",
+                    "description": "Local ID",
+                    "example": 1
                 },
-                "task": {
-                    "type": "string"
+                "name": {
+                    "type": "string",
+                    "description": "Local name",
+                    "example": "Cinemark"
                 },
-                "assignee": {
-                    "type": "string"
+                "description": {
+                    "type": "string",
+                    "description": "Local description",
+                    "example": "A good movie theater"
                 },
-                "status": {
-                    "type": "string"
+                "lat": {
+                    "type": "number",
+                    "description": "Local latitude",
+                    "example": -19.9154
+                },
+                "lng": {
+                    "type": "number",
+                    "description": "Local longitude",
+                    "example": -43.9273
                 }
             }
         }
