@@ -7,7 +7,7 @@ export default async function addUser(name: string, email: string, password: str
     try {
         const newUser = new User(name, email, password)
         await Container.get<Repository<User>>("UserTable").save(newUser)
-        return "User added successfully."
+        return { message: "User added successfully." }
     }
     catch (error) {
         throw error

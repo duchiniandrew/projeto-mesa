@@ -15,7 +15,7 @@ export default async function addLocal(local: LocalType) {
             lat: lat,
             lng: lng
         })
-        return "Local added successfully."
+        return { message: "Local added successfully." }
     }
     catch (error) {
         throw error
