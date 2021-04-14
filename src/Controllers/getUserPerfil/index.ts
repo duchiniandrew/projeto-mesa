@@ -7,7 +7,7 @@ export default async function getUserPerfil(req: Request, res: Response) {
     try {
         validation(req)
         try {
-            res.status(200).json(await getUserPerfilService(parseInt(req.params.userId)))
+            res.status(200).json(await getUserPerfilService(parseInt(req.params.id)))
         }
         catch (error) {
             res.status(error.code).json({ message: error.message })

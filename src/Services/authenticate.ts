@@ -9,7 +9,7 @@ export default async function auth(req: Request) {
         expiresIn: '1h'
     }
     if (await signInUserByEmailAndPassword(email, password)) {
-        return jwt.sign({ email: email }, process.env.SECRET as Secret, expirationTime)
+        return { token: jwt.sign({ email: email }, process.env.SECRET as Secret, expirationTime) };
     }
     else {
         throw new FailedAuthentication()

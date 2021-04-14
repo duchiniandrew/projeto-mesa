@@ -16,6 +16,6 @@ export default async function rateLocalById(rate: number, comment: string, local
             rating: rate,
             local: local
         })
-        return "Local rating save successfuly."
+        return { message: "Local rating save successfuly." }
     }
 }

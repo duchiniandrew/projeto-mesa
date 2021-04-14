@@ -37,6 +37,6 @@ export default async function getLocals(latUser: number, lngUser: number) {
 
         const a = Math.sin(latDiff / 2) * Math.sin(latDiff / 2) + Math.cos(lat1InRad) * Math.cos(lat2InRad) * Math.sin(lngDiff / 2) * Math.sin(lngDiff / 2)
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-        return ((earthRad * c) / 1000).toFixed(3)
+        return `${((earthRad * c) / 1000).toFixed(3)} Km`
     }
 }

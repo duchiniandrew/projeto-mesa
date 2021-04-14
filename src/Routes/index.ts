@@ -28,7 +28,7 @@ export default function routes() {
     app.get("/api/v1/getLocalsByList", authMiddleware, getLocalsByList)
     app.get("/api/v1/getLocalsByMap/:lat/:lng", authMiddleware, getLocalsByMap)
     app.get("/api/v1/getLocalRates/:id", authMiddleware, getLocalRates)
-    app.get("/api/v1/getUserPerfil", authMiddleware, getUserPerfil)
+    app.get("/api/v1/getUserPerfil/:id", authMiddleware, getUserPerfil)
     app.get("/api/v1/logout", authMiddleware, logout)
 
     app.post("/api/v1/addLocal", authMiddleware, addLocal)

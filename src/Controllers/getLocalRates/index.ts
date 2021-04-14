@@ -7,7 +7,7 @@ export default async function getLocalRate(req: Request, res: Response) {
     try {
         validation(req)
         try {
-            res.status(200).json(await getLocalRateService(parseInt(req.params.localId)))
+            res.status(200).json(await getLocalRateService(parseInt(req.params.id)))
         }
         catch (error) {
             res.status(error.code).json({ message: error.message })
