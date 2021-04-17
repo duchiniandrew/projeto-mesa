@@ -7,7 +7,7 @@ export default async function addLocal(req: Request, res: Response) {
     try {
         validation(req)
         try {
-            res.status(201).json(await addLocalService(req.body))
+            res.status(201).json(await addLocalService(req))
         }
         catch (error) {
             res.status(error.code).json({ message: error.message })
