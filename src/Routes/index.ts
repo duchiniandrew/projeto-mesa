@@ -32,7 +32,7 @@ export default function routes() {
     app.get("/api/v1/logout", authMiddleware, logout)
 
     app.post("/api/v1/addLocal", authMiddleware, addLocal)
-    app.post("/api/v1/user", authMiddleware, addUser)
+    app.post("/api/v1/user", addUser)
     app.post("/api/v1/authenticate", authenticate)
     app.post("/api/v1/rateLocalById", authMiddleware, rateLocalById)
     app.post("/api/v1/rateLocalByName", authMiddleware, rateLocalByName)

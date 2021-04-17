@@ -26,3 +26,10 @@ export class EmptyLngError extends Error {
         this.code = 422
     }
 }
+export class LocalAllreadyExists extends Error {
+    code: number
+    constructor() {
+        super("Local allready Exists.")
+        this.code = 400
+    }
+}

@@ -9,32 +9,67 @@
         "http"
     ],
     "basePath": "/api",
+    "parameters": {
+        "Authorization": {
+            "name": "authorization",
+            "in": "header",
+            "description": "Authorization Token to API Access",
+            "type": "string",
+            "required": true,
+            "pattern": "^Bearer ."
+        },
+        "lat": {
+            "name": "lat",
+            "in": "path",
+            "description": "Local object",
+            "type": "number",
+            "required": true
+        },
+        "lng": {
+            "name": "lng",
+            "in": "path",
+            "description": "Local object",
+            "type": "number",
+            "required": true
+        },
+        "localId": {
+            "name": "localId",
+            "in": "path",
+            "type": "number",
+            "description": "Local ID",
+            "required": true
+        },
+        "userId": {
+            "name": "userId",
+            "in": "path",
+            "type": "number",
+            "description": "User ID",
+            "required": true
+        }
+    },
+    "consumes": [
+        "application/json"
+    ],
     "paths": {
-        "/v1/getLocalsByList/${lat}/${lng}": {
+        "/v1/getLocalsByList/{lat}/{lng}": {
             "get": {
                 "summary": "Get all locals ordened by list",
                 "description": "Get all locals in ordened by alphabet",
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "lat",
-                        "description": "User latitude",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/lat"
-                        }
+                        "$ref": "#/parameters/Authorization"
                     },
                     {
-                        "in": "path",
-                        "name": "lng",
-                        "description": "User longitude",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/lng"
-                        }
+                        "$ref": "#/parameters/lat"
+                    },
+                    {
+                        "$ref": "#/parameters/lng"
                     }
                 ],
                 "responses": {
@@ -56,31 +91,25 @@
                 }
             }
         },
-        "/v1/getLocalsByMap/${lat}/${lng}": {
+        "/v1/getLocalsByMap/{lat}/{lng}": {
             "get": {
                 "summary": "Get all locals ordened by asc distance",
                 "description": "Get all locals in ordened by asc distance",
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "lat",
-                        "description": "User latitude",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/lat"
-                        }
+                        "$ref": "#/parameters/Authorization"
                     },
                     {
-                        "in": "path",
-                        "name": "lng",
-                        "description": "User longitude",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/lng"
-                        }
+                        "$ref": "#/parameters/lat"
+                    },
+                    {
+                        "$ref": "#/parameters/lng"
                     }
                 ],
                 "responses": {
@@ -102,22 +131,22 @@
                 }
             }
         },
-        "/v1/getLocalRates/${id}": {
+        "/v1/getLocalRates/{localId}": {
             "get": {
                 "summary": "Get all locals rate",
                 "description": "Get all locals rated by users",
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "id",
-                        "description": "Local ID",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/localId"
-                        }
+                        "$ref": "#/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/parameters/localId"
                     }
                 ],
                 "responses": {
@@ -127,6 +156,20 @@
                             "$ref": "#/definitions/getLocalRatesResponse"
                         }
                     },
+                    "400": {
+                        "description": "Format invalid",
+                        "schema": {
+                            "type": "object",
+                            "description": "Invalid 'id' parameter.",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Invalid 'id' parameter."
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid status value",
                         "schema": {
@@ -136,22 +179,22 @@
                 }
             }
         },
-        "/v1/getUserPerfil/${id}": {
+        "/v1/getUserPerfil/{userId}": {
             "get": {
                 "summary": "Get user perfil",
                 "description": "Get the logged user perfil",
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "id",
-                        "description": "User ID",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/userId"
-                        }
+                        "$ref": "#/parameters/Authorization"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
                     }
                 ],
                 "responses": {
@@ -159,6 +202,20 @@
                         "description": "successful operation",
                         "schema": {
                             "$ref": "#/definitions/getUserPerfilResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Format invalid",
+                        "schema": {
+                            "type": "object",
+                            "description": "Invalid 'id' parameter.",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Id parameter must be a integer number."
+                                }
+                            }
                         }
                     },
                     "422": {
@@ -176,6 +233,14 @@
                 "description": "Logout the loged user",
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/Authorization"
+                    }
+                ],
+                "tags": [
+                    "Private routes"
                 ],
                 "responses": {
                     "200": {
@@ -199,6 +264,9 @@
                 "description": "Logout the loged user",
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Private routes"
                 ],
                 "parameters": [
                     {
@@ -234,6 +302,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Public routes"
+                ],
                 "parameters": [
                     {
                         "in": "body",
@@ -252,6 +323,20 @@
                             "$ref": "#/definitions/addUserResponse"
                         }
                     },
+                    "400": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "description": "Password out of format",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Password format",
+                                    "example": "Password must have at least 8 characters and include numbers and letters."
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid status value",
                         "schema": {
@@ -267,6 +352,9 @@
                 "description": "Authenticate user in system",
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Public routes"
                 ],
                 "parameters": [
                     {
@@ -286,6 +374,20 @@
                             "$ref": "#/definitions/authenticateResponse"
                         }
                     },
+                    "400": {
+                        "description": "User allready logged",
+                        "schema": {
+                            "type": "object",
+                            "description": "User allready logged in system",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "User allready logged",
+                                    "example": "User allready logged."
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid status value",
                         "schema": {
@@ -302,7 +404,13 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/Authorization"
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -318,6 +426,74 @@
                         "description": "successful operation",
                         "schema": {
                             "$ref": "#/definitions/rateLocalByIdResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "description": "Local not found.",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Local not found."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/rateLocalByName": {
+            "post": {
+                "summary": "Rate local",
+                "description": "Rate local by name",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private routes"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/Authorization"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Rate local request object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/rateLocalByNameRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/rateLocalByNameResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Not found",
+                        "schema": {
+                            "type": "object",
+                            "description": "Local not found.",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Local not found."
+                                }
+                            }
                         }
                     },
                     "422": {
@@ -336,7 +512,13 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/Authorization"
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -352,6 +534,20 @@
                         "description": "successful operation",
                         "schema": {
                             "$ref": "#/definitions/changeUserPasswordResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Password format error",
+                        "schema": {
+                            "type": "object",
+                            "description": "Password out of format",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Password must have at least 8 characters and include numbers and letters."
+                                }
+                            }
                         }
                     },
                     "422": {
@@ -370,7 +566,13 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/Authorization"
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -386,6 +588,20 @@
                         "description": "successful operation",
                         "schema": {
                             "$ref": "#/definitions/changeUserEmailResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Format error",
+                        "schema": {
+                            "type": "object",
+                            "description": "Email out of format",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Email must follow pattern like: email@email.com."
+                                }
+                            }
                         }
                     },
                     "422": {
@@ -404,7 +620,13 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Private routes"
+                ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/Authorization"
+                    },
                     {
                         "in": "body",
                         "name": "body",
@@ -420,6 +642,20 @@
                         "description": "successful operation",
                         "schema": {
                             "$ref": "#/definitions/updateUserPerfilResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Parameter out of format",
+                        "schema": {
+                            "type": "object",
+                            "description": "Parameter out of format.",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Result message",
+                                    "example": "Parameter out of format."
+                                }
+                            }
                         }
                     },
                     "422": {
@@ -650,10 +886,6 @@
         "authenticateResponse": {
             "type": "object",
             "description": "Authentication Request",
-            "required": [
-                "email",
-                "password"
-            ],
             "properties": {
                 "token": {
                     "type": "string",
@@ -689,6 +921,43 @@
             }
         },
         "rateLocalByIdResponse": {
+            "type": "object",
+            "description": "Rate local result object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Result message",
+                    "example": "Local rating save successfuly"
+                }
+            }
+        },
+        "rateLocalByNameRequest": {
+            "type": "object",
+            "description": "Authentication Request",
+            "required": [
+                "rate",
+                "comment",
+                "localName"
+            ],
+            "properties": {
+                "rate": {
+                    "type": "number",
+                    "description": "Local rate",
+                    "example": 4.5
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Rate comment",
+                    "example": "Nice place to go out."
+                },
+                "localName": {
+                    "type": "number",
+                    "description": "Local name",
+                    "example": 1
+                }
+            }
+        },
+        "rateLocalByNameResponse": {
             "type": "object",
             "description": "Rate local result object",
             "properties": {
@@ -753,10 +1022,6 @@
         "changeUserEmailResponse": {
             "type": "object",
             "description": "Change user email response",
-            "required": [
-                "newEmail",
-                "userId"
-            ],
             "properties": {
                 "message": {
                     "type": "string",
@@ -794,10 +1059,6 @@
         "updateUserPerfilResponse": {
             "type": "object",
             "description": "Change user email response",
-            "required": [
-                "newEmail",
-                "userId"
-            ],
             "properties": {
                 "message": {
                     "type": "string",
@@ -805,26 +1066,6 @@
                     "example": "User email successfully updated."
                 }
             }
-        },
-        "localId": {
-            "type": "number",
-            "description": "Local ID",
-            "example": 1
-        },
-        "userId": {
-            "type": "number",
-            "description": "User ID",
-            "example": 1
-        },
-        "lat": {
-            "type": "number",
-            "description": "Local object",
-            "example": -19.9154
-        },
-        "lng": {
-            "type": "number",
-            "description": "Local object",
-            "example": -43.9273
         },
         "InvalidResponse": {
             "type": "object",
