@@ -11,10 +11,10 @@ export default async function addUser(req: Request, res: Response) {
         }
         catch (error) {
             if (error.code === '23505') {
-                res.status(400).json("Email allready in use.")
+                res.status(400).json({ message: "Email allready in use." })
             }
             else {
-                res.status(500).json("Internal error in server please contact the administrator")
+                res.status(500).json({ message: "Internal error in server please contact the administrator" })
             }
         }
     }
