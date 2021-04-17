@@ -2,7 +2,7 @@
   "name": "projeto-mesa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "start": "npx tsc; cd app; node index.js",
     "test": "npx jest",
@@ -34,5 +34,8 @@
     "swagger-ui-express": "^4.1.6",
     "typedi": "^0.10.0",
     "typeorm": "^0.2.32"
+  },
+  "engines": {
+    "node": "14.8.0"
   }
 }

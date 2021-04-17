@@ -17,7 +17,7 @@ export default async function authenticateToken(req: Request, res: Response, nex
         else {
             jwt.verify(token, process.env.SECRET as string, (error: any, user: any) => {
                 if (error) {
-                    return res.status(403).send({ message: "User not authenticated" })
+                    return res.status(403).json({ message: "User not authenticated" })
                 }
                 next()
             })

@@ -3,7 +3,7 @@ import { json } from "body-parser"
 
 import authMiddleware from "../Middlewares/Auth"
 import authenticate from "../Controllers/authentication"
-import addUser from "../Controllers/addUser/addUser"
+import addUser from "../Controllers/addUser"
 import addLocal from "../Controllers/addLocal"
 import rateLocalById from "../Controllers/rateLocalById"
 import rateLocalByName from "../Controllers/rateLocalByName"

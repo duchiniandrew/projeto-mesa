@@ -15,6 +15,6 @@ export default async function authentication(req: Request, res: Response) {
         }
     }
     catch (error) {
-        res.status(error.code).send({ message: error.message })
+        res.status(error.code).json({ message: error.message })
     }
 }
