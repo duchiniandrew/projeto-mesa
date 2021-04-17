@@ -1,12 +1,12 @@
+import { Request } from "express"
 import { Container } from "typedi"
 import { Repository } from "typeorm"
 
 import { Local } from "../DB/Entities/Local"
-import { LocalType } from "../types/Local"
 
-export default async function addLocal(local: LocalType) {
+export default async function addLocal(req: Request) {
 
-    const { name, description, lat, lng } = local
+    const { name, description, lat, lng } = req.body
 
     try {
         await Container.get<Repository<Local>>("LocalTable").save({
