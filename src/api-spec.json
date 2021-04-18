@@ -179,7 +179,7 @@
                 }
             }
         },
-        "/v1/getUserPerfil/{userId}": {
+        "/v1/getUserPerfil": {
             "get": {
                 "summary": "Get user perfil",
                 "description": "Get the logged user perfil",
@@ -192,9 +192,6 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/Authorization"
-                    },
-                    {
-                        "$ref": "#/parameters/userId"
                     }
                 ],
                 "responses": {
