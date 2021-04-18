@@ -3,17 +3,22 @@ import { Request } from "express";
 import { EmptyPasswordError, FormatPasswordError, SamePasswordError } from "./errors"
 import { Container } from "typedi"
 import { Repository } from "typeorm"
+import testPassword from "../../Utils/validatePassword"
+import getEmailFromToken from "../../Services/getEmailFromToken"
 
 import { User } from "../../DB/Entities/User"
 
 export default async function validation(req: Request) {
-    if (req.body.newPassword === "") {
+
+    const { newPassword } = req.body
+
+    if (newPassword === "") {
         throw new EmptyPasswordError()
     }
-    if (req.body.newPassword.length < 8 && /^[0-9a-zA-Z]+$/.test(req.body.newPassword)) {
+    if (newPassword.length < 8 || !testPassword(newPassword)) {
         throw new FormatPasswordError()
     }
-    if (await Container.get<Repository<User>>("UserTable").findOne({ id: req.body.userId, password: req.body.newPassword })) {
+    if (await Container.get<Repository<User>>("UserTable").findOne({ email: getEmailFromToken(req), password: newPassword })) {
         throw new SamePasswordError()
     }
 }
