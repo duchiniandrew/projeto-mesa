@@ -13,7 +13,7 @@ export class Local {
     @PrimaryGeneratedColumn('increment')
     id?: number
 
-    @Column()
+    @Column({ unique: true })
     name: string
 
     @Column()
