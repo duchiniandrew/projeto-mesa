@@ -3,7 +3,7 @@ import { Repository } from "typeorm"
 
 import { User } from "../DB/Entities/User"
 
-export default async function changeUserPasswordService(newEmail: string, userId: number) {
-    await Container.get<Repository<User>>("UserTable").save({ id: userId, email: newEmail })
+export default async function changeUserPasswordService(email: string, newEmail: string,) {
+    await Container.get<Repository<User>>("UserTable").update({ email: email }, { email: newEmail })
     return { message: "User email successfully updated." }
 }
