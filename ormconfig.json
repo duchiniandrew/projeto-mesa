@@ -1,0 +1,18 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "Mesa",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+        "src/DB/Entities/**/*ts"
+    ],
+    "cli": {
+        "entitiesDir": "src/DB/Entities",
+        "migrationsDir": "src/migration",
+        "subscribersDir": "src/subscriber"
+    }
+}
