@@ -548,9 +548,17 @@
                         }
                     },
                     "422": {
-                        "description": "Invalid status value",
+                        "description": "Empty password",
                         "schema": {
-                            "$ref": "#/definitions/InvalidResponse"
+                            "type": "object",
+                            "description": "Empty password in system",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Empty password",
+                                    "example": "Empty password."
+                                }
+                            }
                         }
                     }
                 }
@@ -969,19 +977,13 @@
             "type": "object",
             "description": "Authentication Request",
             "required": [
-                "newPassword",
-                "userId"
+                "newPassword"
             ],
             "properties": {
                 "newPassword": {
                     "type": "string",
                     "description": "New password",
                     "example": "1234ABCD"
-                },
-                "userId": {
-                    "type": "number",
-                    "description": "User ID",
-                    "example": 1
                 }
             }
         },

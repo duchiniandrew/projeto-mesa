@@ -1,7 +1,8 @@
 import { Request } from "express"
 import { EmptyEmailError, EmptyNameError, EmptyPasswordError, FormatPasswordError } from "./errors"
+import testPassword from "../../Utils/validatePassword"
 
-export default async function validation(req: Request) {
+export default function validation(req: Request) {
 
     const { name, email, password } = req.body
 
@@ -19,22 +20,4 @@ export default async function validation(req: Request) {
     if (password.length < 8 || !testPassword(password)) {
         throw new FormatPasswordError()
     }
-}
-function testPassword(password: string) {
-    let hasNumber = false
-    let hasLetters = false
-
-    //TODO find a better way to check password format
-    for (let i = 0; i < password.length; i++) {
-        if (/[a-zA-Z]/.test(password[i])) {
-            hasLetters = true
-        }
-        if (/\d+/g.test(password[i])) {
-            hasNumber = true
-        }
-        if (hasLetters && hasNumber) {
-            return true
-        }
-    }
-    return false
 }

@@ -58,10 +58,11 @@ We have separete the projects files in some folders:
 
 * **src**: Here we have all system scrips and folders to run it:
     * **Controllers**: APIs controllers.
-    * **Services**: Scripts that will run after que Request passes in controllers.
     * **DB**: Here we have the script to start our DB and a folder where you can find all tables.
     * **Middlewares**: Here we all all project's middlewares. Ex: auth middleware.
     * **Routes**: Here we create the API routes, passing the route's name and it's controller.
+    * **Services**: Scripts that will run after que Request passes in controllers.
+    * **Utils**: Here we have utilities functions.
     * **api-spec.json**: File used by swagger to generate our API documentation.
     * **ormconfig.json**: File to set typeORM config.
 * **tests**: Here we have all tests files.
