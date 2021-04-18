@@ -48,7 +48,7 @@ Test the developer skills as a senior developer. The developer will create a bac
     TYPEORM_PORT = "YOUR DB PORT"
     TYPEORM_SYNCHRONIZE = "SYNCRONIZE DB? (TRUE OR FALSE)"
     TYPEORM_LOGGING = "LOGGING DB? (TRUE OR FALSE)"
-    TYPEORM_ENTITIES = DB/Entities/*.js (PATH OF PROJECT DB ENTITIES)
+    TYPEORM_ENTITIES = build/DB/Entities/*.js (PATH OF PROJECT DB ENTITIES)
     SECRET = "SECRET KEY FOR CRIPTO" (YOU CAN GENERATE THIS USING node cripto library)
 6. Run command: ```npm run start```
 
