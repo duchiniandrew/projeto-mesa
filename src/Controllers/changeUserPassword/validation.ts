@@ -4,7 +4,6 @@ import { EmptyPasswordError, FormatPasswordError, SamePasswordError } from "./er
 import { Container } from "typedi"
 import { Repository } from "typeorm"
 import testPassword from "../../Utils/validatePassword"
-import getEmailFromToken from "../../Services/getEmailFromToken"
 
 import { User } from "../../DB/Entities/User"
 
@@ -18,7 +17,7 @@ export default async function validation(req: Request) {
     if (newPassword.length < 8 || !testPassword(newPassword)) {
         throw new FormatPasswordError()
     }
-    if (await Container.get<Repository<User>>("UserTable").findOne({ email: getEmailFromToken(req), password: newPassword })) {
+    if (await Container.get<Repository<User>>("UserTable").findOne({ email: req.body.email, password: newPassword })) {
         throw new SamePasswordError()
     }
 }
