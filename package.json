@@ -2,9 +2,9 @@
   "name": "projeto-mesa",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "app/index.js",
   "scripts": {
-    "start": "npx tsc; node build/index.js",
+    "start": "npx tsc; node app/index.js",
     "test": "npx jest",
     "test:coverage": "npx jest --coverage"
   },
