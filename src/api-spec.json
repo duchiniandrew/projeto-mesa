@@ -1002,19 +1002,13 @@
             "type": "object",
             "description": "Change user email request",
             "required": [
-                "newEmail",
-                "userId"
+                "newEmail"
             ],
             "properties": {
                 "newEmail": {
                     "type": "string",
                     "description": "New email",
                     "example": "email@email.com"
-                },
-                "userId": {
-                    "type": "number",
-                    "description": "User ID",
-                    "example": 1
                 }
             }
         },
