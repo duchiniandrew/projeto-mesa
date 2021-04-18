@@ -4,7 +4,7 @@ import { EmptyEmailError, FormatEmailError, SameEmailError } from "./errors"
 import { Container } from "typedi"
 import { Repository } from "typeorm"
 
-import { User } from "../..//DB/Entities/User"
+import { User } from "../../DB/Entities/User"
 
 export default async function validation(req: Request) {
     if (req.body.newEmail === "") {

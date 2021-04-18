@@ -8,11 +8,6 @@
     "synchronize": true,
     "logging": false,
     "entities": [
-        "src/DB/Entities/**/*ts"
-    ],
-    "cli": {
-        "entitiesDir": "src/DB/Entities",
-        "migrationsDir": "src/migration",
-        "subscribersDir": "src/subscriber"
-    }
+        "DB/Entities/**/*ts"
+    ]
 }
