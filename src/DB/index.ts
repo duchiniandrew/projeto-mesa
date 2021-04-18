@@ -15,5 +15,7 @@ export default function db() {
         Container.set("LocalAnalysisTable", connection.getRepository(LocalAnalysis))
         Container.set("TokenBlackListTable", connection.getRepository(TokenBlackList))
         Routes()
+    }).catch(e => {
+        console.log(e)
     })
 }
