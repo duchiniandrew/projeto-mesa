@@ -617,60 +617,6 @@
                     }
                 }
             }
-        },
-        "/v1/updateUserPerfil": {
-            "put": {
-                "summary": "Change user info",
-                "description": "Change user email and password",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Private routes"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/Authorization"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Update user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/updateUserPerfilRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/updateUserPerfilResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Parameter out of format",
-                        "schema": {
-                            "type": "object",
-                            "description": "Parameter out of format.",
-                            "properties": {
-                                "message": {
-                                    "type": "string",
-                                    "description": "Result message",
-                                    "example": "Parameter out of format."
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Invalid status value",
-                        "schema": {
-                            "$ref": "#/definitions/InvalidResponse"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
@@ -1013,43 +959,6 @@
             }
         },
         "changeUserEmailResponse": {
-            "type": "object",
-            "description": "Change user email response",
-            "properties": {
-                "message": {
-                    "type": "string",
-                    "description": "Result message",
-                    "example": "User email successfully updated."
-                }
-            }
-        },
-        "updateUserPerfilRequest": {
-            "type": "object",
-            "description": "Change user email request",
-            "required": [
-                "newEmail",
-                "newPassword",
-                "userId"
-            ],
-            "properties": {
-                "newEmail": {
-                    "type": "string",
-                    "description": "New email",
-                    "example": "email@email.com"
-                },
-                "newPassword": {
-                    "type": "string",
-                    "description": "New email",
-                    "example": "1234ABCD"
-                },
-                "userId": {
-                    "type": "number",
-                    "description": "User ID",
-                    "example": 1
-                }
-            }
-        },
-        "updateUserPerfilResponse": {
             "type": "object",
             "description": "Change user email response",
             "properties": {

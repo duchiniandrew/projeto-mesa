@@ -14,7 +14,6 @@ import getUserPerfil from "../Controllers/getUserPerfil"
 import changeUserPassword from "../Controllers/changeUserPassword"
 import changeUserEmail from "../Controllers/changeUserEmail"
 import logout from "../Controllers/logout"
-import updateUserPerfil from "../Controllers/updateUserPerfil"
 import { serve, setup } from 'swagger-ui-express'
 
 import * as swaggerFile from "../api-spec.json"
@@ -39,8 +38,6 @@ export default function routes() {
 
     app.patch("/api/v1/changeUserPassword", authMiddleware, changeUserPassword)
     app.patch("/api/v1/changeUserEmail", authMiddleware, changeUserEmail)
-
-    app.put("/api/v1/updateUserPerfil", authMiddleware, updateUserPerfil)
 
     app.listen(process.env.PORT || 3001)
 }
