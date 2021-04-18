@@ -1,1 +1,1 @@
-web: node app/index.js
+web: npx tsc; node app/index.js
