@@ -12,10 +12,10 @@ export class User {
     @PrimaryGeneratedColumn('increment')
     id?: number
 
-    @Column({ unique: true })
+    @Column()
     name: string
 
-    @Column()
+    @Column({ unique: true })
     email: string
 
     @Column()
