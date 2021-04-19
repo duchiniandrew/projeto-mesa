@@ -17,7 +17,7 @@ export default async function validation(req: Request) {
     if (newPassword.length < 8 || !testPassword(newPassword)) {
         throw new FormatPasswordError()
     }
-    if (await Container.get<Repository<User>>("UserTable").findOne({ email: req.body.email, password: newPassword })) {
+    if (await Container.get<Repository<User>>("UserTable").findOne({ id: req.body.userId, password: newPassword })) {
         throw new SamePasswordError()
     }
 }

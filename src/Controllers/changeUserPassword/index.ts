@@ -2,14 +2,14 @@ import { Request, Response } from "express";
 
 import validation from "./validation"
 import changeUserPasswordService from "../../Services/changeUserPassword"
-import getEmailFromToken from "../../Services/getEmailFromToken"
+import getIdFromToken from "../../Services/getIdFromToken"
 
 export default async function changeUserPassword(req: Request, res: Response) {
     try {
-        req.body.email = getEmailFromToken(req)
+        req.body.userId = getIdFromToken(req)
         await validation(req)
         try {
-            res.status(200).json(await changeUserPasswordService(req.body.newPassword, req.body.email))
+            res.status(200).json(await changeUserPasswordService(req.body.newPassword, req.body.userId))
         }
         catch (error) {
             res.status(error.code).json({ message: error.message })

@@ -14,7 +14,9 @@ export default async function validation(req: Request) {
     // if (req.body.newEmail.length < 8 && /^[0-9a-zA-Z]+$/.test(req.body.newPassword)) {
     //     throw new FormatEmailError()
     // }
-    if (await Container.get<Repository<User>>("UserTable").findOne({ id: req.body.userId, email: req.body.newEmail })) {
+    const user = await Container.get<Repository<User>>("UserTable").findOne({ id: req.body.userId })
+    
+    if (user && user.email === req.body.newEmail) {
         throw new SameEmailError()
     }
 }

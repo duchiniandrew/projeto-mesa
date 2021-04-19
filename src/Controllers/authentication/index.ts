@@ -6,7 +6,6 @@ import authService from "../../Services/authenticate"
 export default async function authentication(req: Request, res: Response) {
     try {
         validation(req)
-
         try {
             res.status(200).json(await authService(req))
         }

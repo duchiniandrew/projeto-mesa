@@ -8,8 +8,9 @@ export default async function auth(req: Request) {
     const expirationTime = {
         expiresIn: '1h'
     }
-    if (await signInUserByEmailAndPassword(email, password)) {
-        return { token: jwt.sign({ email: email }, process.env.SECRET as Secret, expirationTime) };
+    const user = await signInUserByEmailAndPassword(email, password)
+    if (user) {
+        return { token: jwt.sign({ userId: user.id }, process.env.SECRET as Secret, expirationTime) };
     }
     else {
         throw new FailedAuthentication()
