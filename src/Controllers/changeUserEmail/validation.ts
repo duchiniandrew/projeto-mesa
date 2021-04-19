@@ -11,10 +11,11 @@ export default async function validation(req: Request) {
         throw new EmptyEmailError()
     }
     //TODO check if email is like email@email.com
-    // if (req.body.newEmail.length < 8 && /^[0-9a-zA-Z]+$/.test(req.body.newPassword)) {
-    //     throw new FormatEmailError()
-    // }
-    const user = await Container.get<Repository<User>>("UserTable").findOne({ id: req.body.userId })
+    
+    const user = await Container.get<Repository<User>>("UserTable").createQueryBuilder("user")
+        .select(['user.email'])
+        .where("user.id = :id", { id: req.body.userId })
+        .getOne()
     
     if (user && user.email === req.body.newEmail) {
         throw new SameEmailError()

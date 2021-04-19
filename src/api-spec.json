@@ -878,7 +878,7 @@
                 "message": {
                     "type": "string",
                     "description": "Result message",
-                    "example": "Local rating save successfuly"
+                    "example": "Local rate save successfuly"
                 }
             }
         },
@@ -915,7 +915,7 @@
                 "message": {
                     "type": "string",
                     "description": "Result message",
-                    "example": "Local rating save successfuly"
+                    "example": "Local rate save successfuly"
                 }
             }
         },

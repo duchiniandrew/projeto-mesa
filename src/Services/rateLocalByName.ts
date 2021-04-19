@@ -6,7 +6,10 @@ import { Local } from "../DB/Entities/Local"
 import { LocalNotFoundError } from "../Controllers/rateLocalByName/errors"
 
 export default async function rateLocalByName(rate: number, comment: string, localName: string) {
-    const local = await Container.get<Repository<Local>>("LocalTable").findOne({ name: localName })
+    const local = await Container.get<Repository<Local>>("LocalTable").createQueryBuilder("local")
+        .select(['local.id'])
+        .where("local.name = :name", { name: localName })
+        .getOne()
 
     if (!local) {
         throw new LocalNotFoundError()
@@ -14,9 +17,9 @@ export default async function rateLocalByName(rate: number, comment: string, loc
     else {
         await Container.get<Repository<LocalAnalysis>>("LocalAnalysisTable").save({
             comments: comment,
-            rating: rate,
+            rate: rate,
             local: local
         })
-        return { message: "Local rating save successfuly." }
+        return { message: "Local rate save successfuly." }
     }
 }

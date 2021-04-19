@@ -3,8 +3,8 @@ import { Local } from "./Local"
 
 @Entity()
 export class LocalAnalysis {
-    constructor(rating: number, comments: string, local: Local) {
-        this.rating = rating
+    constructor(rate: number, comments: string, local: Local) {
+        this.rate = rate
         this.comments = comments
         this.local = local
     }
@@ -13,7 +13,7 @@ export class LocalAnalysis {
     id?: number
 
     @Column('float')
-    rating?: number
+    rate?: number
 
     @Column()
     comments?: string
